@@ -3,14 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laboratory</title>
+    <title>Lab Inventory</title>
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
+
+<header class="page-header">
     <h1>My Laboratory</h1>
-    <ul>
-        <% departments.forEach(function(department, index) { %>
-            <li><%= department.name %></li>
-        <% }) %>
-    </ul>
+</header>
+
+<main class="container">
+
+    <!-- Departments -->
+    <section class="card">
+        <h2 class="card-title">Departments</h2>
+
+        <div class="card-grid">
+            <% departments.forEach(function(department) { %>
+                <div class="hover-card">
+                    <p><%= department.name %></p>
+                </div>
+            <% }) %>
+        </div>
+    </section>
+
+
+    <!-- Item Categories -->
+    <section class="card">
+        <h2 class="card-title">Item Categories</h2>
+
+        <div class="card-grid">
+            <% itemCategories.forEach(function(category) { %>
+                <div class="hover-card">
+                    <p><%= category.name %></p>
+                </div>
+            <% }) %>
+        </div>
+    </section>
+
+</main>
+
 </body>
 </html>

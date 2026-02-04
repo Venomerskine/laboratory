@@ -5,10 +5,9 @@ async function getHomepage(req, res) {
         db.getAllDepartments(),
         db.getAllItemCategories(),
     ]);
-    console.log(departments);
+    res.render("./layouts/homePage", { departments, itemCategories });
 }
 
 module.exports = {
-    getHomepage,
-    itemCategories
+    getHomepage
 };
