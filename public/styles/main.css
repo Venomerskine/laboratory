@@ -78,3 +78,64 @@ body {
 .hover-card p {
     font-weight: 600;
 }
+
+/* ===== Subtitle under headers ===== */
+.subtitle {
+    margin-top: 6px;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+/* ===== Details Card (Lab-style info panel) ===== */
+.details-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 6px 18px var(--shadow);
+    max-width: 700px;
+    margin: auto;
+}
+
+/* Rows inside details */
+.details-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #e6ecea;
+}
+
+.details-row:last-child {
+    border-bottom: none;
+}
+
+/* Labels */
+.label {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* Values */
+.value {
+    color: #333;
+    text-align: right;
+    max-width: 60%;
+}
+
+/* ===== Status badges ===== */
+.status {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status.active {
+    background: rgba(25, 117, 83, 0.12);
+    color: var(--primary);
+}
+
+.status.inactive {
+    background: #f3d6d6;
+    color: #a33;
+}
+

@@ -12,8 +12,8 @@ async function getHomepage(req, res) {
 async function getDepartment(req, res) {
 
     const id = req.params.id;
-    console.log(req.params)
-    console.log("Department id is: ", id)
+    // console.log(req.params)
+    // console.log("Department id is: ", id)
 
     const department = await db.getDepartmentById(id);
     if(!department) {
