@@ -139,3 +139,17 @@ body {
     color: #a33;
 }
 
+/* ===== Back navigation link ===== */
+.back-link {
+    display: inline-block;
+    margin-bottom: 16px;
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: 600;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.back-link:hover {
+    opacity: 0.75;
+    transform: translateX(-2px);
+}
