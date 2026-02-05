@@ -40,7 +40,6 @@ body {
     padding: 20px;
     margin-bottom: 25px;
     box-shadow: 0 4px 12px var(--shadow);
-    width: 45%;
 }
 
 .card-title {
@@ -152,4 +151,9 @@ body {
 .back-link:hover {
     opacity: 0.75;
     transform: translateX(-2px);
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
 }

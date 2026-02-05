@@ -38,12 +38,12 @@
 
         <div class="details-row">
             <span class="label">Created</span>
-            <span class="value"><%= department.created_at %></span>
+            <span class="value"><%= new Date(department.created_at).toLocaleDateString() %></span>
         </div>
 
         <div class="details-row">
             <span class="label">Last Updated</span>
-            <span class="value"><%= department.updated_at %></span>
+            <span class="value"><%= new Date(department.updated_at).toLocaleDateString() %></span>
         </div>
 
     </section>
