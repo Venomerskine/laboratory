@@ -17,12 +17,13 @@
     <!-- Departments -->
     <section class="card">
         <h2 class="card-title">Departments</h2>
-
         <div class="card-grid">
             <% departments.forEach(function(department) { %>
-                <div class="hover-card">
-                    <p><%= department.name %></p>
-                </div>
+                <a href="/departments/<%= department.id %>">
+                    <div class="hover-card">
+                        <p><%= department.name %></p>
+                    </div>
+                </a>
             <% }) %>
         </div>
     </section>
@@ -40,6 +41,19 @@
             <% }) %>
         </div>
     </section>
+
+    <!-- Items -->
+     <section class="card">
+        <h2 class="card-title">Items</h2>
+
+        <div class="card-grid">
+            <% items.forEach(function(item) { %>
+                <div class="hover-card">
+                    <p><%= item.name %></p>
+                </div>
+            <% }) %>
+        </div>
+     </section>
 
 </main>
 
