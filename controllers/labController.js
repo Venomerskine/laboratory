@@ -41,8 +41,13 @@ async function getStock(req, res) {
     }
 }
 
+async function getTransaction(req, res) {
+    res.render("layouts/transactions/index")
+}
+
 module.exports = {
     getHomepage,
     getDepartment,
-    getStock
+    getStock,
+    getTransaction
 };

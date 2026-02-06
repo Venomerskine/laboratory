@@ -56,10 +56,15 @@ async function getStockItems() {
     return result.rows;
 }
 
+async function getTransactionTable() {
+    const result = await pool.query("select * from stock_transaction ")
+}
+
 module.exports = {
     getAllDepartments,
     getAllItemCategories,
     getAllItems,
     getDepartmentById,
-    getStockItems
+    getStockItems,
+    getTransactionTable
 };
