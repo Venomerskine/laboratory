@@ -29,7 +29,20 @@ async function getDepartment(req, res) {
     // return res.json(department);
 }
 
+async function getStock(req, res) {
+    const stockItems = await db.getStockItems();
+    console.log("Stock Items:", stockItems);
+    if (!stockItems) {
+        return res.status(404).send("No stock items found");
+    } else {
+        console.log("Stock items retrieved successfully");
+        res.render("layouts/stock/index", {stockItems});
+        // res.send(stockItems.json)
+    }
+}
+
 module.exports = {
     getHomepage,
-    getDepartment
+    getDepartment,
+    getStock
 };

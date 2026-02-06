@@ -21,9 +21,45 @@ async function getAllItems() {
     return result.rows;
 }
 
+async function getStockItems() {
+    const result = await pool.query(
+
+        `
+        select  
+            it.id as item_id,
+            it.name as item_name,
+            it.unit_of_measure  as unit,
+            it.storage_condition  as item_storage_condition,
+            it.is_active  as is_item_active,
+            ic.id as category_id,
+            ic.name as category,
+            ic.description as catergory_description,
+            ic.is_consumable  as is_category_consumable,
+            ib.id as batch_id,
+            ib.batch_number as batch_number,
+            ib.expiry_date as batch_expiry,
+            ib.quantity_remaining as batch_quantity_remainig,
+            ib.received_date as batch_recived_date,
+            ib.is_active as is_batch_active
+            
+            
+        from item_table it 
+        join item_category ic 
+        on it.category_id = ic.id
+        join item_batches ib 
+        on it.id = ib.item_id 
+
+        `
+
+    );
+    console.log("stock results:",result.rows);
+    return result.rows;
+}
+
 module.exports = {
     getAllDepartments,
     getAllItemCategories,
     getAllItems,
-    getDepartmentById
+    getDepartmentById,
+    getStockItems
 };

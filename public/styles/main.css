@@ -157,3 +157,78 @@ a{
     text-decoration: none;
     color: inherit;
 }
+
+/* ===== Table container ===== */
+.table-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 6px 18px var(--shadow);
+    overflow-x: auto;
+}
+
+/* ===== Lab table ===== */
+.lab-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+/* Header */
+.lab-table thead {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.lab-table th {
+    text-align: left;
+    padding: 12px;
+    font-weight: 600;
+}
+
+/* Rows */
+.lab-table td {
+    padding: 12px;
+    border-bottom: 1px solid #e6ecea;
+    vertical-align: top;
+}
+
+/* Hover effect */
+.lab-table tbody tr:hover {
+    background: #f7fbfa;
+}
+
+/* Inactive row */
+.row-inactive {
+    opacity: 0.55;
+}
+
+/* Item formatting */
+.item-name {
+    font-weight: 600;
+}
+
+.item-meta {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* Monospace for batch numbers */
+.mono {
+    font-family: monospace;
+}
+
+/* Quantity styles */
+.qty {
+    font-weight: 600;
+}
+
+.qty-zero {
+    color: #b00020;
+}
+
+/* Expired date */
+.expired {
+    color: #b00020;
+    font-weight: 600;
+}

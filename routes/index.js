@@ -4,6 +4,7 @@ const labController = require("../controllers/labController")
 
 router.get("/", labController.getHomepage)
 router.get("/departments/:id", labController.getDepartment)
+router.get("/stock", labController.getStock);
 
 router.get("/test", (req, res) => {
     res.send("test route")

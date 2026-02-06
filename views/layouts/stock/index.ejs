@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratory stockItems</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+
+<header class="page-header">
+    <h1>Laboratory stockItems Register</h1>
+    <p class="subtitle">Inventory by item, category, and batch</p>
+</header>
+
+<main class="container">
+
+    <a href="/" class="back-link">← Back to Home</a>
+
+    <section class="table-card">
+
+        <table class="lab-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Category</th>
+                    <th>Unit</th>
+                    <th>Batch No.</th>
+                    <th>Qty Remaining</th>
+                    <th>Expiry</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% stockItems.forEach(function(row) { %>
+                    <tr class="<%= row.is_batch_active ? '' : 'row-inactive' %>">
+
+                        <td>
+                            <div class="item-name"><%= row.item_name %></div>
+                            <div class="item-meta">
+                                Storage: <%= row.item_storage_condition %>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div><%= row.category %></div>
+                            <div class="item-meta">
+                                <%= row.is_category_consumable ? "Consumable" : "Non-consumable" %>
+                            </div>
+                        </td>
+
+                        <td><%= row.unit %></td>
+
+                        <td class="mono"><%= row.batch_number %></td>
+
+                        <td class="qty <%= row.batch_quantity_remainig <= 0 ? 'qty-zero' : '' %>">
+                            <%= row.batch_quantity_remainig %>
+                        </td>
+
+                        <td class="<%= new Date(row.batch_expiry) < new Date() ? 'expired' : '' %>">
+                            <%= row.batch_expiry %>
+                        </td>
+
+                        <td>
+                            <span class="status <%= row.is_batch_active ? 'active' : 'inactive' %>">
+                                <%= row.is_batch_active ? "Active" : "Inactive" %>
+                            </span>
+                        </td>
+
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+    </section>
+
+</main>
+
+</body>
+</html>
