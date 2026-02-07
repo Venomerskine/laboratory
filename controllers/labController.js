@@ -48,33 +48,33 @@ async function getTransaction(req, res) {
 
 }
 
-async function postTransaction (req, res) {
-    try {
-        
-        const {
-            department_name,
-            batch_number,
-            transaction_type,
-            qantity,
-            reason,
-        } = req.body
+async function postTransaction(req, res) {
+  try {
+    const {
+      department_name,
+      batch_number,
+      transaction_type,
+      quantity,
+      reason,
+    } = req.body;
 
-        console.log(req.body)
+    console.log(req.body);
 
-        await db.insertStockTransaction({
-            department_name,
-            batch_number,
-            transaction_type,
-            qantity,
-            reason,
-        })
+    await db.insertStockTransaction({
+      department_name,
+      batch_number,
+      transaction_type,
+      quantity,
+      reason,
+    });
 
-        res.redirect("/");
-    } catch (err) {
-       console.error(err);
-       res.status(500).send("Failed to save transaction") 
-    }
+    res.redirect("/");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Failed to save transaction");
+  }
 }
+
 
 async function getBatchDetails(req, res){
     const id = req.params.id

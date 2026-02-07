@@ -15,18 +15,18 @@
             <select name="department_name" required>
                 <option value="">--Please select a department--</option>
                 <% itemBatchTransaction.forEach(dept => { %>
-                <option value="<%= dept.name %>">
+                <option value="<%= dept.department_name %>">
                     <%= dept.department_name %>
                 </option>
                 <% }) %>
             </select>
 
             <!-- Item Batch -->
-            <label for="batch">Batch</label>
-            <select name="batch" id="batch" required>
+            <label for="batch_number">Batch</label>
+            <select name="batch_number" id="batch_number" required>
                 <option value="">--Please select a batch--</option>
                 <% itemBatchTransaction.forEach(function(row) { %>
-                    <option value="<%= row.id %>"><%= row.batch_number %></option>
+                    <option value="<%= row.batch_number %>"><%= row.batch_number %></option>
                 <% }) %>                
             </select>
 
