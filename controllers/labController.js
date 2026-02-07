@@ -42,9 +42,9 @@ async function getStock(req, res) {
 }
 
 async function getTransaction(req, res) {
-    const transaction = await db.getTransactionTable()
-    console.log(transaction)
-    res.render("layouts/transactions/index", {transaction})
+    const itemBatchTransaction = await db.getItemBatchAndTransaction()
+    console.log(itemBatchTransaction)
+    res.render("layouts/transactions/index", {itemBatchTransaction})
 
 }
 
