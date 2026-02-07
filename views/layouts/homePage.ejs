@@ -48,9 +48,11 @@
 
         <div class="card-grid">
             <% items.forEach(function(item) { %>
-                <div class="hover-card">
-                    <p><%= item.name %></p>
-                </div>
+                <a href="/stock/<%=item.id%>">
+                    <div class="hover-card">
+                        <p><%= item.name %></p>
+                    </div>
+                </a>
             <% }) %>
         </div>
      </section>
