@@ -3,54 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
+    <title>Stock Transaction</title>
     <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-    <section class="card">
-        <form action="transactions" method="POST">
 
-            <!-- DEPARTMENT -->
-            <label>Department</label>
-            <select name="department_name" required>
-                <option value="">--Please select a department--</option>
-                <% itemBatchTransaction.forEach(dept => { %>
-                <option value="<%= dept.department_name %>">
-                    <%= dept.department_name %>
-                </option>
-                <% }) %>
-            </select>
+<header class="page-header">
+    <h1>Stock Transaction</h1>
+    <p class="subtitle">Record receipt, issue, adjustment, expiry, or return</p>
+</header>
 
-            <!-- Item Batch -->
-            <label for="batch_number">Batch</label>
-            <select name="batch_number" id="batch_number" required>
-                <option value="">--Please select a batch--</option>
-                <% itemBatchTransaction.forEach(function(row) { %>
-                    <option value="<%= row.batch_number %>"><%= row.batch_number %></option>
-                <% }) %>                
-            </select>
+<main class="container">
 
-            <!-- Transaction type -->
-            <label>Type</label>
-            <select name="transaction_type" required>
-                <option value="">--Please select a type--</option>
-                <option>RECEIPT</option>
-                <option>ISSUE</option>
-                <option>ADJUSTMENT</option>
-                <option>EXPIRED</option>
-                <option>RETURN</option>
-            </select>
+    <a href="/" class="back-link">← Back to Home</a>
+
+    <section class="form-card">
+
+        <form action="transactions" method="POST" class="lab-form">
+
+            <!-- Department -->
+            <div class="form-group">
+                <label>Department</label>
+                <select name="department_name" required>
+                    <option value="">-- Select department --</option>
+                    <% itemBatchTransaction.forEach(dept => { %>
+                        <option value="<%= dept.department_name %>">
+                            <%= dept.department_name %>
+                        </option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <!-- Batch -->
+            <div class="form-group">
+                <label>Batch</label>
+                <select name="batch_number" required>
+                    <option value="">-- Select batch --</option>
+                    <% itemBatchTransaction.forEach(row => { %>
+                        <option value="<%= row.batch_number %>">
+                            <%= row.batch_number %>
+                        </option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <!-- Type -->
+            <div class="form-group">
+                <label>Transaction Type</label>
+                <select name="transaction_type" required>
+                    <option value="">-- Select type --</option>
+                    <option>RECEIPT</option>
+                    <option>ISSUE</option>
+                    <option>ADJUSTMENT</option>
+                    <option>EXPIRED</option>
+                    <option>RETURN</option>
+                </select>
+            </div>
 
             <!-- Quantity -->
-            <label>Quantity</label>
-            <input type="number" name="quantity" min="1" required placeholder="How many"/>
+            <div class="form-group">
+                <label>Quantity</label>
+                <input type="number" name="quantity" min="1" required placeholder="Enter quantity">
+            </div>
 
             <!-- Reason -->
-            <label>Reason</label>
-            <textarea name="reason"></textarea>
+            <div class="form-group">
+                <label>Reason / Notes</label>
+                <textarea name="reason" rows="3" placeholder="Optional explanation"></textarea>
+            </div>
 
-            <button type="submit">Submit</button>
+            <button type="submit" class="primary-btn">Record Transaction</button>
+
         </form>
     </section>
+
+</main>
+
 </body>
 </html>

@@ -232,3 +232,72 @@ a{
     color: #b00020;
     font-weight: 600;
 }
+
+/* ===== Form container ===== */
+.form-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 6px 18px var(--shadow);
+    max-width: 520px;
+    margin: auto;
+}
+
+/* ===== Form layout ===== */
+.lab-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Labels */
+.form-group label {
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+/* Inputs, selects, textarea */
+.lab-form input,
+.lab-form select,
+.lab-form textarea {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #d9e3e0;
+    font-size: 0.95rem;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Focus state */
+.lab-form input:focus,
+.lab-form select:focus,
+.lab-form textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(25, 117, 83, 0.15);
+}
+
+/* ===== Primary button ===== */
+.primary-btn {
+    margin-top: 10px;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px var(--shadow);
+    opacity: 0.95;
+}
