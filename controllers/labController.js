@@ -31,18 +31,21 @@ async function getDepartment(req, res) {
 
 async function getStock(req, res) {
     const stockItems = await db.getStockItems();
-    console.log("Stock Items:", stockItems);
+    // console.log("Stock Items:", stockItems);
     if (!stockItems) {
         return res.status(404).send("No stock items found");
     } else {
-        console.log("Stock items retrieved successfully");
+        // console.log("Stock items retrieved successfully");
         res.render("layouts/stock/index", {stockItems});
         // res.send(stockItems.json)
     }
 }
 
 async function getTransaction(req, res) {
-    res.render("layouts/transactions/index")
+    const transaction = await db.getTransactionTable()
+    console.log(transaction)
+    res.render("layouts/transactions/index", {transaction})
+
 }
 
 module.exports = {

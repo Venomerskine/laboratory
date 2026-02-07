@@ -58,6 +58,21 @@ async function getStockItems() {
 
 async function getTransactionTable() {
     const result = await pool.query("select * from stock_transaction ")
+    return result.rows
+}
+
+async function getItemBatchAndTransaction() {
+    const result = await pool.query(
+        `
+        select * 
+        from item_table it 
+        join item_batches ib 
+        on it.id = ib.item_id 
+        join stock_transaction st 
+        on st.item_batch_id = ib.id
+        `
+    )
+    return result.rows
 }
 
 module.exports = {
@@ -66,5 +81,6 @@ module.exports = {
     getAllItems,
     getDepartmentById,
     getStockItems,
-    getTransactionTable
+    getTransactionTable,
+    getItemBatchAndTransaction
 };

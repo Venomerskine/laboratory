@@ -9,9 +9,15 @@
 <body>
     <section class="card">
         <form action="submit">
-            <label for="item">Item</label>
-            <input type="text">
+            <label for="item">Choose the Item</label>
+            <select name="name " id="name">
+                <option value="">--Please choose an option--</option>
+                <% transaction.forEach(function(row) { %>
+                    <option value="<%= row.id %>"><%= row.transaction_type %></option>
+                <% }) %>
+            </select>
         </form>
+        <%=transaction[0].transaction_type%>
     </section>
 </body>
 </html>
