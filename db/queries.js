@@ -64,12 +64,14 @@ async function getTransactionTable() {
 async function getItemBatchAndTransaction() {
     const result = await pool.query(
         `
-        select * 
-        from item_table it 
-        join item_batches ib 
-        on it.id = ib.item_id 
-        join stock_transaction st 
-        on st.item_batch_id = ib.id
+            select * 
+            from item_table it 
+            join item_batches ib 
+            on it.id = ib.item_id 
+            join stock_transaction st 
+            on st.item_batch_id = ib.id
+            join departments d 
+            on st.department_id = d.id
         `
     )
     return result.rows
