@@ -80,6 +80,33 @@ async function getItemBatchAndTransaction() {
     return result.rows
 }
 
+async function insertStockTransaction(data) {
+    const query = 
+        `
+        INSERT INTO stock_transaction
+            (item_batch_id, department_id, transaction_type, quantity, reason)
+        SELECT
+            ib.id,
+            d.id,
+            $1,
+            $2,
+            $3
+        FROM item_batches ib
+        JOIN department d ON d.name = $4
+        WHERE ib.batch_number = $5
+        `;
+
+    const values =[
+        data.transaction_type,
+        data.quantity,
+        data.reason,
+        data.department_name,
+        data.batch_number,
+    ]
+
+    return pool.query(query, values)
+}
+
 module.exports = {
     getAllDepartments,
     getAllItemCategories,
@@ -87,5 +114,6 @@ module.exports = {
     getDepartmentById,
     getStockItems,
     getTransactionTable,
-    getItemBatchAndTransaction
+    getItemBatchAndTransaction,
+    insertStockTransaction
 };
