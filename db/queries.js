@@ -115,7 +115,8 @@ async function getBatchInDetail(id) {
             ib.batch_number,
             ib.expiry_date,
             ib.quantity_remaining,
-            ib.received_date 
+            ib.received_date,
+            ib.is_active
         from item_table it 
         join item_batches ib 
         on ib.item_id = it.id
