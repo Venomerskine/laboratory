@@ -49,8 +49,29 @@ async function getTransaction(req, res) {
 }
 
 async function postTransaction (req, res) {
-    const {department, item, batch, type, quantity, reason} = req.body
-    console.log("transact:",department)
+    try {
+        
+        const {
+            batch_number,
+            department_name,
+            transaction_type,
+            qantity,
+            reason,
+        } = req.body
+
+        await db.insertStockTransaction({
+            batch_number,
+            department_name,
+            transaction_type,
+            qantity,
+            reason,
+        })
+
+        res.redirect("/");
+    } catch (err) {
+       console.error(err);
+       res.status(500).send("Failed to save transaction") 
+    }
 }
 
 module.exports = {
