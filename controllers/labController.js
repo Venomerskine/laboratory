@@ -43,14 +43,21 @@ async function getStock(req, res) {
 
 async function getTransaction(req, res) {
     const itemBatchTransaction = await db.getItemBatchAndTransaction()
-    console.log(itemBatchTransaction)
+    // console.log(itemBatchTransaction)
     res.render("layouts/transactions/index", {itemBatchTransaction})
 
+}
+
+async function postTransaction (req, res) {
+    const {department, item, batch, type, quantity, reason} = req.body
+    console.log("transact:",department)
 }
 
 module.exports = {
     getHomepage,
     getDepartment,
     getStock,
-    getTransaction
+    getTransaction,
+    postTransaction
 };
+
