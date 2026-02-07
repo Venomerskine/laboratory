@@ -8,43 +8,43 @@
 </head>
 <body>
     <section class="card">
-        <form action="">
-            <label for="department">Department</label>
-            <select name="department" id="department" >
-                <option value="">--Please select a department--</option>
-                <% itemBatchTransaction.forEach(function(row) { %>
-                    <option value="<%= row.id %>"><%= row.department_name %></option>
-                <% }) %>                
-            </select>
-            <label for="item">Choose the Item</label>
-            <select name="name " id="name">
-                <option value="">--Please choose an item--</option>
-                <% itemBatchTransaction.forEach(function(row) { %>
-                    <option value="<%= row.id %>"><%= row.item_name %></option>
+        <form action="transactions" method="POST">
+
+            <!-- DEPARTMENT -->
+            <label>Department</label>
+            <select name="department_name" required>
+                <% itemBatchTransaction.forEach(dept => { %>
+                <option value="<%= dept.name %>">
+                    <%= dept.department_name %>
+                </option>
                 <% }) %>
             </select>
 
+            <!-- Item Batch -->
             <label for="batch">Batch</label>
-            <select name="batch" id="batch">
-                <option value="">--please select a batch--</option>
+            <select name="batch" id="batch" required>
                 <% itemBatchTransaction.forEach(function(row) { %>
                     <option value="<%= row.id %>"><%= row.batch_number %></option>
                 <% }) %>                
             </select>
 
-            <label for="type">Test type</label>
-            <select name="type" id="type">
-                <option value="type">--Select Transaction type--</option>
-                <option value="issue">Isuue</option>
-                <option value="waste">Waste</option>
-                <option value="refill">Refill</option> 
+            <!-- Transaction type -->
+            <label>Type</label>
+            <select name="transaction_type" required>
+                <option>RECEIPT</option>
+                <option>ISSUE</option>
+                <option>ADJUSTMENT</option>
+                <option>EXPIRED</option>
+                <option>RETURN</option>
             </select>
 
-            <label for="quantity">Quantity</label>
-            <input type="number" name="quantity" id="quantity" min="0">
+            <!-- Quantity -->
+            <label>Quantity</label>
+            <input type="number" name="quantity" min="1" required />
 
-            <label for="reason">Reason</label>
-            <input type="text" name="reason" id="reason">
+            <!-- Reason -->
+            <label>Reason</label>
+            <textarea name="reason"></textarea>
 
             <button type="submit">Submit</button>
         </form>
