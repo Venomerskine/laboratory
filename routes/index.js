@@ -6,7 +6,7 @@ router.get("/", labController.getHomepage)
 router.get("/departments/:id", labController.getDepartment)
 router.get("/stock", labController.getStock);
 router.get("/transactions", labController.getTransaction)
-router.post('/submit', labController.postTransaction)
+router.post('/transactions', labController.postTransaction)
 
 router.get("/test", (req, res) => {
     res.send("test route")
