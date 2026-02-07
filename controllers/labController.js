@@ -76,9 +76,10 @@ async function postTransaction (req, res) {
     }
 }
 
-async function getBatchDetails(){
-    const batch = await db.getBatchInDetail()
-    res.render("layout/stock/batch-detail", {batch})
+async function getBatchDetails(req, res){
+    const id = req.params.id
+    const batch = await db.getBatchInDetail(id)
+    res.render("layouts/stock/batch-detail", {batch})
 }
 
 module.exports = {

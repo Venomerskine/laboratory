@@ -106,8 +106,8 @@ async function insertStockTransaction(data) {
 }
 
 
-async function getBatchInDetail() {
-    const result = awaitpool.query(
+async function getBatchInDetail(id) {
+    const result = await pool.query(
         `
         select 
             it.name,
@@ -118,8 +118,9 @@ async function getBatchInDetail() {
             ib.received_date 
         from item_table it 
         join item_batches ib 
-	
-        `
+        on ib.item_id = it.id
+        where it.id = $1
+        `,[id]
     )
 
     return result.rows;
