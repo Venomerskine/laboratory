@@ -3,66 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Batch details</title>
+    <title>Batch Details</title>
     <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-     <a href="/" class="back-link">← Back to Home</a>
 
-    <section class="table-card">
+<header class="page-header">
+    <h1>Batch Details</h1>
+    <p class="subtitle">Laboratory stock batch information</p>
+</header>
 
-        <table class="lab-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Storage Condition</th>
-                    <th>Batch Number</th>
-                    <th>Expiry Date</th>
-                    <th>Qty Remaining</th>
-                    <th>Received Date</th>
-                    <th>Is_active</th>
-                </tr>
-            </thead>
+<main class="container">
 
-            <tbody>
-                <% batch.forEach(function(row) { %>
-                    <tr class="<%= row.is_active ? '' : 'row-inactive' %>">
+    <a href="/" class="back-link">← Back to Home</a>
 
-                        <td>
-                            <div class="item-name"><%= row.name %></div>
-                            <div class="item-meta">
-                                Storage: <%= row.item_storage_condition %>
-                            </div>
-                        </td>
+    <% batch.forEach(function(row) { %>
+        <section class="details-card">
 
-                        <td>
-                            <div><%= row.storage_condition %></div>
-                        </td>
+            <!-- Item identity -->
+            <div class="details-header">
+                <h2><%= row.name %></h2>
+                <span class="status <%= row.is_active ? 'active' : 'inactive' %>">
+                    <%= row.is_active ? "Active" : "Inactive" %>
+                </span>
+            </div>
 
-                        <td><%= row.batch_number %></td>
+            <!-- Information grid -->
+            <div class="details-grid">
 
-                        <td class="<%= row.expiry_date%>"><%= new Date(row.expiry_date).toLocaleDateString() %></td>
+                <div class="info-block">
+                    <span class="label">Batch Number</span>
+                    <span class="value mono"><%= row.batch_number %></span>
+                </div>
 
-                        <td class="mono">
-                            <%= row.quantity_remaining %>
-                        </td>
+                <div class="info-block">
+                    <span class="label">Quantity Remaining</span>
+                    <span class="value qty <%= row.quantity_remaining <= 0 ? 'qty-zero' : '' %>">
+                        <%= row.quantity_remaining %>
+                    </span>
+                </div>
 
-                        <td class="<%= new Date(row.batch_expiry) < new Date() ? 'expired' : '' %>">
-                            <%= row.received_date %>
-                        </td>
+                <div class="info-block">
+                    <span class="label">Expiry Date</span>
+                    <span class="value <%= new Date(row.expiry_date) < new Date() ? 'expired' : '' %>">
+                        <%= new Date(row.expiry_date).toLocaleDateString() %>
+                    </span>
+                </div>
 
-                        <td>
-                            <span class="status <%= row.is_active ? 'active' : 'inactive' %>">
-                                <%= row.is_active ? "Active" : "Inactive" %>
-                            </span>
-                        </td>
+                <div class="info-block">
+                    <span class="label">Received Date</span>
+                    <span class="value">
+                        <%= new Date(row.received_date).toLocaleDateString() %>
+                    </span>
+                </div>
 
-                    </tr>
-                <% }) %>
-            </tbody>
-        </table>
+                <div class="info-block">
+                    <span class="label">Storage Condition</span>
+                    <span class="value"><%= row.storage_condition %></span>
+                </div>
 
-    </section>
+            </div>
+
+        </section>
+    <% }) %>
+
+</main>
 
 </body>
 </html>

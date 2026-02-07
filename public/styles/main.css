@@ -301,3 +301,45 @@ a{
     box-shadow: 0 6px 14px var(--shadow);
     opacity: 0.95;
 }
+
+/* ===== Details header ===== */
+.details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.details-header h2 {
+    font-size: 1.2rem;
+}
+
+/* ===== Info grid for batch/records ===== */
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+}
+
+/* Individual info block */
+.info-block {
+    background: #f7fbfa;
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Labels inside blocks */
+.info-block .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: 0.7;
+}
+
+/* Values */
+.info-block .value {
+    font-weight: 600;
+}
