@@ -52,7 +52,7 @@ async function getStockItems() {
         `
 
     );
-    console.log("stock results:",result.rows);
+    // console.log("stock results:",result.rows);
     return result.rows;
 }
 
@@ -81,30 +81,48 @@ async function getItemBatchAndTransaction() {
 }
 
 async function insertStockTransaction(data) {
-    const query = 
+  const query = `
+    INSERT INTO stock_transaction
+      (item_batch_id, department_id, transaction_type, quantity, reason)
+    SELECT
+      ib.id,
+      d.id,
+      $1,
+      $2,
+      $3
+    FROM item_batches ib
+    JOIN departments d ON d.name = $4
+    WHERE ib.batch_number = $5
+  `;
+  const values = [
+    data.transaction_type,
+    data.quantity,
+    data.reason,
+    data.department_name,
+    data.batch_number,
+  ];
+
+  return pool.query(query, values);
+}
+
+
+async function getBatchInDetail() {
+    const result = awaitpool.query(
         `
-        INSERT INTO stock_transaction
-            (item_batch_id, department_id, transaction_type, quantity, reason)
-        SELECT
-            ib.id,
-            d.id,
-            $1,
-            $2,
-            $3
-        FROM item_batches ib
-        JOIN department d ON d.name = $4
-        WHERE ib.batch_number = $5
-        `;
+        select 
+            it.name,
+            it.storage_condition,
+            ib.batch_number,
+            ib.expiry_date,
+            ib.quantity_remaining,
+            ib.received_date 
+        from item_table it 
+        join item_batches ib 
+	
+        `
+    )
 
-    const values =[
-        data.transaction_type,
-        data.quantity,
-        data.reason,
-        data.department_name,
-        data.batch_number,
-    ]
-
-    return pool.query(query, values)
+    return result.rows;
 }
 
 module.exports = {
@@ -115,5 +133,6 @@ module.exports = {
     getStockItems,
     getTransactionTable,
     getItemBatchAndTransaction,
-    insertStockTransaction
+    insertStockTransaction,
+    getBatchInDetail
 };

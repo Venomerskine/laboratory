@@ -13,6 +13,7 @@
             <!-- DEPARTMENT -->
             <label>Department</label>
             <select name="department_name" required>
+                <option value="">--Please select a department--</option>
                 <% itemBatchTransaction.forEach(dept => { %>
                 <option value="<%= dept.name %>">
                     <%= dept.department_name %>
@@ -23,6 +24,7 @@
             <!-- Item Batch -->
             <label for="batch">Batch</label>
             <select name="batch" id="batch" required>
+                <option value="">--Please select a batch--</option>
                 <% itemBatchTransaction.forEach(function(row) { %>
                     <option value="<%= row.id %>"><%= row.batch_number %></option>
                 <% }) %>                
@@ -31,6 +33,7 @@
             <!-- Transaction type -->
             <label>Type</label>
             <select name="transaction_type" required>
+                <option value="">--Please select a type--</option>
                 <option>RECEIPT</option>
                 <option>ISSUE</option>
                 <option>ADJUSTMENT</option>
@@ -40,7 +43,7 @@
 
             <!-- Quantity -->
             <label>Quantity</label>
-            <input type="number" name="quantity" min="1" required />
+            <input type="number" name="quantity" min="1" required placeholder="How many"/>
 
             <!-- Reason -->
             <label>Reason</label>

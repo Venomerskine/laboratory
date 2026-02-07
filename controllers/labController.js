@@ -52,16 +52,18 @@ async function postTransaction (req, res) {
     try {
         
         const {
-            batch_number,
             department_name,
+            batch_number,
             transaction_type,
             qantity,
             reason,
         } = req.body
 
+        console.log(req.body)
+
         await db.insertStockTransaction({
-            batch_number,
             department_name,
+            batch_number,
             transaction_type,
             qantity,
             reason,
@@ -74,11 +76,17 @@ async function postTransaction (req, res) {
     }
 }
 
+async function getBatchDetails(){
+    const batch = await db.getBatchInDetail()
+    res.render("layout/stock/batch-detail", {batch})
+}
+
 module.exports = {
     getHomepage,
     getDepartment,
     getStock,
     getTransaction,
-    postTransaction
+    postTransaction,
+    getBatchDetails
 };
 
