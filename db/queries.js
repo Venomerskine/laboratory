@@ -127,6 +127,11 @@ async function getBatchInDetail(id) {
     return result.rows;
 }
 
+async function getCategory(id){
+    const result = await pool.query(`select * from item_category ic where id = $1`, [id])
+    return result.rows
+}
+
 module.exports = {
     getAllDepartments,
     getAllItemCategories,
@@ -136,5 +141,6 @@ module.exports = {
     getTransactionTable,
     getItemBatchAndTransaction,
     insertStockTransaction,
-    getBatchInDetail
+    getBatchInDetail,
+    getCategory
 };

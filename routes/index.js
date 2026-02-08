@@ -7,6 +7,8 @@ router.get("/departments/:id", labController.getDepartment)
 router.get("/stock", labController.getStock);
 router.get("/transactions", labController.getTransaction)
 router.get("/stock/:id", labController.getBatchDetails)
+router.get("/category/:id", labController.getCategoryDetails)
+
 router.post('/transactions', labController.postTransaction)
 
 router.get("/test", (req, res) => {

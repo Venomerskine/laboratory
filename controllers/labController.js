@@ -82,12 +82,19 @@ async function getBatchDetails(req, res){
     res.render("layouts/stock/batch-detail", {batch})
 }
 
+async function getCategoryDetails(req, res){
+    const id = req.params.id
+    const category = await db.getCategory(id)
+    res.render("layouys/stock/category", {category})
+}
+
 module.exports = {
     getHomepage,
     getDepartment,
     getStock,
     getTransaction,
     postTransaction,
-    getBatchDetails
+    getBatchDetails,
+    getCategoryDetails
 };
 
