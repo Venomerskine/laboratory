@@ -148,6 +148,24 @@ async function getItemsByCategory(id){
         return itemResults.rows
 }
 
+async function gettransactionHistory(){
+    const history = await pool.query(`
+        
+        select 
+            d.name as department, 
+            it.name as item,
+            ib.batch_number,
+            st.transaction_type,
+            st.transaction_date,
+            st.reason
+        from stock_transaction st 
+        join item_batches ib on st.item_batch_id = ib.id 
+        join item_table it on ib.item_id = it.id
+        join departments d on st.department_id = d.id
+        `)
+        return history.rows
+}
+
 module.exports = {
     getAllDepartments,
     getAllItemCategories,
@@ -159,5 +177,6 @@ module.exports = {
     insertStockTransaction,
     getBatchInDetail,
     getCategoryById,
-    getItemsByCategory
+    getItemsByCategory,
+    gettransactionHistory
 };
