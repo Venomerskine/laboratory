@@ -1,12 +1,15 @@
 /* ===== Theme Variables ===== */
 :root {
     --primary: #197553;
+    --primary-light: rgba(25, 117, 83, 0.15);
     --white: #ffffff;
     --bg: #f4f7f6;
     --shadow: rgba(0, 0, 0, 0.08);
+    --border: #d9e3e0;
+    --danger: #b00020;
 }
 
-/* ===== Reset ===== */
+/* ===== Reset & Base ===== */
 * {
     margin: 0;
     padding: 0;
@@ -17,6 +20,13 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background: var(--bg);
     color: #333;
+    line-height: 1.5;
+}
+
+/* Global Link Reset - Moved UP so specific classes can override it */
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 /* ===== Layout ===== */
@@ -33,8 +43,9 @@ body {
     padding: 0 16px;
 }
 
-/* ===== Section Card ===== */
-.card {
+/* ===== Shared Card Component ===== */
+/* Consolidated .card, .details-card, .table-card, .form-card */
+.card, .details-card, .table-card, .form-card {
     background: var(--white);
     border-radius: 14px;
     padding: 20px;
@@ -42,110 +53,27 @@ body {
     box-shadow: 0 4px 12px var(--shadow);
 }
 
+.details-card, .form-card {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-card { max-width: 520px; padding: 24px; }
+.table-card { overflow-x: auto; }
+
 .card-title {
     margin-bottom: 15px;
     color: var(--primary);
 }
 
-/* ===== Grid ===== */
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
-}
-
-/* ===== Hover Cards (Reusable Everywhere) ===== */
-.hover-card {
-    background: var(--white);
-    border-radius: 12px;
-    padding: 16px;
-    text-align: center;
-    box-shadow: 0 3px 10px var(--shadow);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-    cursor: pointer;
-}
-
-/* Hover Effect */
-.hover-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px var(--shadow);
-    background: var(--primary);
-    color: var(--white);
-}
-
-/* Text inside cards */
-.hover-card p {
-    font-weight: 600;
-}
-
-/* ===== Subtitle under headers ===== */
-.subtitle {
-    margin-top: 6px;
-    font-size: 0.95rem;
-    opacity: 0.9;
-}
-
-/* ===== Details Card (Lab-style info panel) ===== */
-.details-card {
-    background: var(--white);
-    border-radius: 14px;
-    padding: 22px;
-    box-shadow: 0 6px 18px var(--shadow);
-    max-width: 700px;
-    margin: auto;
-}
-
-/* Rows inside details */
-.details-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px solid #e6ecea;
-}
-
-.details-row:last-child {
-    border-bottom: none;
-}
-
-/* Labels */
-.label {
-    font-weight: 600;
-    color: var(--primary);
-}
-
-/* Values */
-.value {
-    color: #333;
-    text-align: right;
-    max-width: 60%;
-}
-
-/* ===== Status badges ===== */
-.status {
-    padding: 4px 10px;
-    border-radius: 999px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-.status.active {
-    background: rgba(25, 117, 83, 0.12);
-    color: var(--primary);
-}
-
-.status.inactive {
-    background: #f3d6d6;
-    color: #a33;
-}
-
-/* ===== Back navigation link ===== */
+/* ===== Navigation ===== */
 .back-link {
     display: inline-block;
     margin-bottom: 16px;
-    text-decoration: none;
     color: var(--primary);
     font-weight: 600;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity 0.2s, transform 0.2s;
 }
 
 .back-link:hover {
@@ -153,97 +81,102 @@ body {
     transform: translateX(-2px);
 }
 
-a{
-    text-decoration: none;
-    color: inherit;
+/* ===== Grids ===== */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
 }
 
-/* ===== Table container ===== */
-.table-card {
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+}
+
+/* ===== Hover Cards ===== */
+.hover-card {
     background: var(--white);
-    border-radius: 14px;
-    padding: 18px;
-    box-shadow: 0 6px 18px var(--shadow);
-    overflow-x: auto;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 3px 10px var(--shadow);
+    transition: all 0.2s ease;
+    cursor: pointer;
 }
 
-/* ===== Lab table ===== */
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px var(--shadow);
+    background: var(--primary);
+    color: var(--white);
+}
+
+.hover-card p { font-weight: 600; }
+
+/* ===== Details Rows & Info Blocks ===== */
+.details-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #e6ecea;
+}
+
+.details-row:last-child { border-bottom: none; }
+
+.label {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* Fixed potential conflict by making .value context-aware */
+.details-row .value {
+    text-align: right;
+    max-width: 60%;
+}
+
+.info-block {
+    background: #f7fbfa;
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-block .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.info-block .value { font-weight: 600; }
+
+/* ===== Tables ===== */
 .lab-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.95rem;
 }
 
-/* Header */
 .lab-table thead {
     background: var(--primary);
     color: var(--white);
 }
 
-.lab-table th {
-    text-align: left;
+.lab-table th, .lab-table td {
     padding: 12px;
-    font-weight: 600;
+    text-align: left;
 }
 
-/* Rows */
 .lab-table td {
-    padding: 12px;
     border-bottom: 1px solid #e6ecea;
     vertical-align: top;
 }
 
-/* Hover effect */
-.lab-table tbody tr:hover {
-    background: #f7fbfa;
-}
+.lab-table tbody tr:hover { background: #f7fbfa; }
 
-/* Inactive row */
-.row-inactive {
-    opacity: 0.55;
-}
-
-/* Item formatting */
-.item-name {
-    font-weight: 600;
-}
-
-.item-meta {
-    font-size: 0.8rem;
-    opacity: 0.7;
-}
-
-/* Monospace for batch numbers */
-.mono {
-    font-family: monospace;
-}
-
-/* Quantity styles */
-.qty {
-    font-weight: 600;
-}
-
-.qty-zero {
-    color: #b00020;
-}
-
-/* Expired date */
-.expired {
-    color: #b00020;
-    font-weight: 600;
-}
-
-/* ===== Form container ===== */
-.form-card {
-    background: var(--white);
-    border-radius: 14px;
-    padding: 24px;
-    box-shadow: 0 6px 18px var(--shadow);
-    max-width: 520px;
-    margin: auto;
-}
-
-/* ===== Form layout ===== */
+/* ===== Forms ===== */
 .lab-form {
     display: flex;
     flex-direction: column;
@@ -256,36 +189,22 @@ a{
     gap: 6px;
 }
 
-/* Labels */
-.form-group label {
-    font-weight: 600;
-    color: var(--primary);
-    font-size: 0.9rem;
-}
-
-/* Inputs, selects, textarea */
-.lab-form input,
-.lab-form select,
-.lab-form textarea {
+.lab-form input, .lab-form select, .lab-form textarea {
     padding: 10px 12px;
     border-radius: 8px;
-    border: 1px solid #d9e3e0;
+    border: 1px solid var(--border);
     font-size: 0.95rem;
-    transition: border 0.2s ease, box-shadow 0.2s ease;
+    transition: border 0.2s, box-shadow 0.2s;
 }
 
-/* Focus state */
-.lab-form input:focus,
-.lab-form select:focus,
-.lab-form textarea:focus {
+.lab-form input:focus, .lab-form select:focus, .lab-form textarea:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 2px rgba(25, 117, 83, 0.15);
+    box-shadow: 0 0 0 2px var(--primary-light);
 }
 
-/* ===== Primary button ===== */
+/* ===== UI Helpers (Badges, Buttons, etc) ===== */
 .primary-btn {
-    margin-top: 10px;
     background: var(--primary);
     color: var(--white);
     border: none;
@@ -293,53 +212,23 @@ a{
     border-radius: 10px;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    transition: all 0.15s ease;
 }
 
 .primary-btn:hover {
     transform: translateY(-1px);
     box-shadow: 0 6px 14px var(--shadow);
-    opacity: 0.95;
 }
 
-/* ===== Details header ===== */
-.details-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 18px;
-}
-
-.details-header h2 {
-    font-size: 1.2rem;
-}
-
-/* ===== Info grid for batch/records ===== */
-.details-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 16px;
-}
-
-/* Individual info block */
-.info-block {
-    background: #f7fbfa;
-    border-radius: 10px;
-    padding: 12px 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-/* Labels inside blocks */
-.info-block .label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    opacity: 0.7;
-}
-
-/* Values */
-.info-block .value {
+.status {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.8rem;
     font-weight: 600;
 }
+
+.status.active { background: var(--primary-light); color: var(--primary); }
+.status.inactive { background: #f3d6d6; color: #a33; }
+
+.qty-zero, .expired { color: var(--danger); font-weight: 600; }
+.mono { font-family: monospace; }
