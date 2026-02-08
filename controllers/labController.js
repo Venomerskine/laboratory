@@ -84,8 +84,14 @@ async function getBatchDetails(req, res){
 
 async function getCategoryDetails(req, res){
     const id = req.params.id
-    const category = await db.getCategory(id)
-    res.render("layouys/stock/category", {category})
+    const [categoryResult, itemsResult] =  await Promise.all([
+        db.getCategoryById(id),
+        db.getItemsByCategory(id)
+    ]);
+
+    const category = categoryResult[0]
+    const items = itemsResult
+    res.render("layouts/stock/category", {category, items})
 }
 
 module.exports = {

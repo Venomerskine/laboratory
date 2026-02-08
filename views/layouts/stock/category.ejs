@@ -3,10 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Category</title>
+    <title><%= category.name %> | Category</title>
     <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-    Welcome to this Category
+
+<header class="page-header">
+    <h1><%= category.name %></h1>
+    <p class="subtitle">Laboratory item category</p>
+</header>
+
+<main class="container">
+
+    <a href="/" class="back-link"> Back to Home</a>
+
+    <!-- CATEGORY INFORMATION -->
+    <section class="surface">
+
+        <div class="details-header">
+            <h2>Category Details</h2>
+
+            <span class="status <%= category.is_active ? 'active' : 'inactive' %>">
+                <%= category.is_active ? "Active" : "Inactive" %>
+            </span>
+        </div>
+
+        <div class="details-grid">
+
+            <div class="info-block">
+                <span class="label">Description</span>
+                <span class="value"><%= category.description %></span>
+            </div>
+
+            <div class="info-block">
+                <span class="label">Type</span>
+                <span class="value">
+                    <%= category.is_consumable ? "Consumable" : "Non-consumable" %>
+                </span>
+            </div>
+
+            <div class="info-block">
+                <span class="label">Created</span>
+                <span class="value">
+                    <%= new Date(category.created_at).toLocaleDateString() %>
+                </span>
+            </div>
+
+            <div class="info-block">
+                <span class="label">Last Updated</span>
+                <span class="value">
+                    <%= new Date(category.updated_at).toLocaleDateString() %>
+                </span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ITEMS IN THIS CATEGORY -->
+    <section class="surface" style="margin-top: 20px;">
+
+        <div class="details-header">
+            <h2>Items in this Category</h2>
+            <span class="item-meta"><%= items.length %> item(s)</span>
+        </div>
+
+        <% if (items.length === 0) { %>
+
+            <p class="item-meta">No items registered in this category.</p>
+
+        <% } else { %>
+
+            <div class="card-grid">
+
+                <% items.forEach(function(item) { %>
+                    <a href="/items/<%= item.id %>" class="hover-card">
+
+                        <p class="item-name"><%= item.name %></p>
+
+                        <p class="item-meta">
+                            <%= item.unit_of_measure %> •
+                            <%= item.storage_condition %>
+                        </p>
+
+                        <span class="status <%= item.is_active ? 'active' : 'inactive' %>">
+                            <%= item.is_active ? "Active" : "Inactive" %>
+                        </span>
+
+                    </a>
+                <% }) %>
+
+            </div>
+
+        <% } %>
+
+    </section>
+
+</main>
+
 </body>
 </html>
