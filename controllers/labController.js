@@ -43,9 +43,9 @@ async function getStock(req, res) {
 
 async function getTransaction(req, res) {
     const itemBatchTransaction = await db.getItemBatchAndTransaction()
-    const transactionHistory =  await db.gettransactionHistory()
+    const transactions =  await db.gettransactionHistory()
     // console.log(itemBatchTransaction)
-    res.render("layouts/transactions/index", {itemBatchTransaction, transactionHistory})
+    res.render("layouts/transactions/index", {itemBatchTransaction, transactions})
 
 }
 

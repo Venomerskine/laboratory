@@ -232,3 +232,71 @@ a {
 
 .qty-zero, .expired { color: var(--danger); font-weight: 600; }
 .mono { font-family: monospace; }
+
+/* ================= TRANSACTION TIMELINE ================= */
+
+.timeline {
+    position: relative;
+    margin-top: 10px;
+    padding-left: 24px;
+    border-left: 2px solid #e6ecea;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.timeline-item {
+    position: relative;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -11px;
+    top: 4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: 3px solid var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Marker color variations */
+.marker-receipt { background: #2e7d32; }
+.marker-issue { background: #c62828; }
+.marker-expired { background: #b00020; }
+.marker-adjustment { background: #ef6c00; }
+
+/* Content box */
+.timeline-content {
+    background: #f7fbfa;
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Top row */
+.timeline-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+
+/* Date */
+.timeline-date {
+    opacity: 0.7;
+    font-size: 0.8rem;
+}
+
+/* Meta line */
+.timeline-meta {
+    margin-top: 4px;
+    font-size: 0.8rem;
+    opacity: 0.75;
+}
+
+/* Reason text */
+.timeline-reason {
+    margin-top: 6px;
+    font-size: 0.85rem;
+}

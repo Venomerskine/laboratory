@@ -76,9 +76,61 @@
 
         </form>
     </section>
-    <section>
-        
-    </section>
+<section class="surface" style="margin-top: 24px;">
+
+    <div class="details-header">
+        <h2>Transaction History</h2>
+        <span class="item-meta"><%= transactions.length %> record(s)</span>
+    </div>
+
+    <% if (transactions.length === 0) { %>
+
+        <p class="item-meta">No transactions recorded for this batch.</p>
+
+    <% } else { %>
+
+        <div class="timeline">
+
+            <% transactions.forEach(function(tx) { %>
+                <div class="timeline-item">
+
+                    <div class="timeline-marker
+                        <%= tx.transaction_type === 'RECEIPT' ? 'marker-receipt' :
+                            tx.transaction_type === 'ISSUE' ? 'marker-issue' :
+                            tx.transaction_type === 'EXPIRED' ? 'marker-expired' :
+                            'marker-adjustment' %>">
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <div class="timeline-top">
+                            <strong><%= tx.transaction_type %></strong>
+                            <span class="timeline-date">
+                                <%= new Date(tx.transaction_date).toLocaleString() %>
+                            </span>
+                        </div>
+
+                        <div class="timeline-meta">
+                            Dept: <%= tx.department %> •
+                            Item: <%= tx.item %> •
+                            Batch: <span class="mono"><%= tx.batch_number %></span>
+                        </div>
+
+                        <% if (tx.reason) { %>
+                            <p class="timeline-reason"><%= tx.reason %></p>
+                        <% } %>
+
+                    </div>
+
+                </div>
+            <% }) %>
+
+        </div>
+
+    <% } %>
+
+</section>
+
 
 </main>
 
