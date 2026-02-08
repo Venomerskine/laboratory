@@ -134,7 +134,7 @@ async function getCategoryById(id){
         WHERE id = $1;
         `, [id])
 
-        console.log("Categoy details :",categoryResult)
+        // console.log("Categoy details :",categoryResult)
     return categoryResult.rows
 }
 
@@ -144,7 +144,7 @@ async function getItemsByCategory(id){
         FROM item_table
         WHERE category_id = $1;
         `, [id])
-        console.log("items in category : ",itemResults)
+        // console.log("items in category : ",itemResults)
         return itemResults.rows
 }
 
