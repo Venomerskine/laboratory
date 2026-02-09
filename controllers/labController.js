@@ -95,6 +95,13 @@ async function getCategoryDetails(req, res){
     res.render("layouts/stock/category", {category, items})
 }
 
+async function getAdminPage(req, res){
+    const[departments] = await Promise.all([
+        db.getAllDepartments()
+    ])
+    res.render("layouts/admin/admin", {departments})
+}
+
 module.exports = {
     getHomepage,
     getDepartment,
@@ -102,6 +109,7 @@ module.exports = {
     getTransaction,
     postTransaction,
     getBatchDetails,
-    getCategoryDetails
+    getCategoryDetails,
+    getAdminPage
 };
 

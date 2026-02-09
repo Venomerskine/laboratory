@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <section class="card">
+        <h2 class="card-title">Departments</h2>
+        <div class="card-grid">
+            <% departments.forEach(function(department) { %>
+                <a href="/departments/<%= department.id %>">
+                    <div class="hover-card">
+                        <p><%= department.name %></p>
+                    </div>
+                </a>
+            <% }) %>
+        </div>
+    </section>
+</body>
+</html>
