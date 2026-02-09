@@ -162,6 +162,7 @@ async function gettransactionHistory(){
         join item_batches ib on st.item_batch_id = ib.id 
         join item_table it on ib.item_id = it.id
         join departments d on st.department_id = d.id
+        order by transaction_date desc
         `)
         return history.rows
 }
