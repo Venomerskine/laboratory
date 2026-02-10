@@ -8,10 +8,10 @@
 </head>
 <body>
     <section class="card">
-        <h2 class="card-title">Departments</h2>
+        <h2 class="card-title">Edit Departments</h2>
         <div class="card-grid">
             <% departments.forEach(function(department) { %>
-                <a href="/departments/<%= department.id %>">
+                <a href="/departmentsEdit/<%= department.id %>">
                     <div class="hover-card">
                         <p><%= department.name %></p>
                     </div>

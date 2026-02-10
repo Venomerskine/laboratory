@@ -102,6 +102,28 @@ async function getAdminPage(req, res){
     res.render("layouts/admin/admin", {departments})
 }
 
+async function editDepartment(req, res){
+    const id = req.params.id;
+    const department = await db.getDepartmentById(id);
+    res.render("layouts/admin/departmentEdit", {department})
+}
+
+async function postDeaprtmentEdit(req, res){
+    const {
+        department_name,
+        department_code_name,
+        department_description,
+        is_active,
+    } = req.body
+
+    await db.isertDepartmentEdit({
+        department_name,
+        department_code_name,
+        department_description,
+        is_active,
+    })
+}
+
 module.exports = {
     getHomepage,
     getDepartment,
@@ -110,6 +132,8 @@ module.exports = {
     postTransaction,
     getBatchDetails,
     getCategoryDetails,
-    getAdminPage
+    getAdminPage,
+    editDepartment,
+    postDeaprtmentEdit
 };
 

@@ -9,6 +9,7 @@ router.get("/transactions", labController.getTransaction)
 router.get("/stock/:id", labController.getBatchDetails)
 router.get("/category/:id", labController.getCategoryDetails)
 router.get("/admin", labController.getAdminPage)
+router.get("/departmentsEdit/:id", labController.editDepartment)
 
 router.post('/transactions', labController.postTransaction)
 
