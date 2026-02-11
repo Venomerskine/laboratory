@@ -108,20 +108,32 @@ async function editDepartment(req, res){
     res.render("layouts/admin/departmentEdit", {department})
 }
 
-async function postDeaprtmentEdit(req, res){
-    const {
-        department_name,
-        department_code_name,
-        department_description,
-        is_active,
-    } = req.body
+async function postDepartmentEdit(req, res){
+    // console.log("req params",req.params)
+    // console.log("req body", req.body)
+    try {
+        const {id} = req.params;
+        const result = await db.insertDepartmentEdit({
+            ...req.body,
+            id
+        })
+        // console.log(result)
 
-    await db.isertDepartmentEdit({
-        department_name,
-        department_code_name,
-        department_description,
-        is_active,
-    })
+        if(result.rowCount === 0) {
+            return res.status(404).send("Department not found")
+        }
+
+        res.redirect("/admin")
+
+    } catch (err) {
+        console.error(err)
+
+        if(err.code === "23505") {
+            return res.status(400).send("Name or cod ealready exists")
+        }
+        res.status(500).send("Server error")
+    }
+
 }
 
 module.exports = {
@@ -134,6 +146,6 @@ module.exports = {
     getCategoryDetails,
     getAdminPage,
     editDepartment,
-    postDeaprtmentEdit
+    postDepartmentEdit
 };
 

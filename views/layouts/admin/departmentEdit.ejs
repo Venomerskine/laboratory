@@ -12,7 +12,7 @@
     <p class="subtitle">Edit and submit the details of <%=department.name%> Department</p>
 </header>
     <section class="form-card">
-        <form action="" method="POST" class="lab-form">
+        <form action="/departments/<%= department.id %>/edit" method="POST" class="lab-form">
             <div class="form-group">
                 <label for="department_name">Name</label>
                 <input type="text" value="<%=department.name%>" id="department_name" name="department_name">

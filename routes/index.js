@@ -12,6 +12,7 @@ router.get("/admin", labController.getAdminPage)
 router.get("/departmentsEdit/:id", labController.editDepartment)
 
 router.post('/transactions', labController.postTransaction)
+router.post("/departments/:id/edit", labController.postDepartmentEdit)
 
 router.get("/test", (req, res) => {
     res.send("test route")

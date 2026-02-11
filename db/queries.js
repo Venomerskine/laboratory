@@ -2,7 +2,7 @@ require("dotenv").config();
 const pool = require("./pool");
 
 async function getAllDepartments() {
-    const result = await pool.query("select * from departments d where is_active = true");
+    const result = await pool.query("select * from departments d where is_active = true order by name asc");
     return result.rows;
 }
 
@@ -167,6 +167,32 @@ async function gettransactionHistory(){
         return history.rows
 }
 
+async function insertDepartmentEdit(data){
+    const query = `
+        UPDATE departments
+        SET 
+            name = $1,
+            code_name = $2,
+            description = $3,
+            is_active = $4,
+            updated_at = CURRENT_TIMESTAMP
+        WHERE id = $5
+        RETURNING *;
+    `
+    const values = [
+        data.department_name,
+        data.department_code_name,
+        data.department_description || null,
+        data.is_active === "true",
+        data.id
+        
+    ]
+
+    console.log("data id in query: ", values)
+
+    return await pool.query(query, values)
+}
+
 module.exports = {
     getAllDepartments,
     getAllItemCategories,
@@ -179,5 +205,6 @@ module.exports = {
     getBatchInDetail,
     getCategoryById,
     getItemsByCategory,
-    gettransactionHistory
+    gettransactionHistory,
+    insertDepartmentEdit
 };
