@@ -4,8 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Item Edit</title>
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
+    <header class="page-header">
+        <h1>Edit <%=category.name%> Category</h1>
+        <p class="subtitle">Edit and submit the details of <%=category.name%> Category</p>
+    </header> 
+    <section class="form-card">
+        <form action="categories/<%= category.id %>/edit" method="POST" class="lab-form">
+          <div class="form-group">
+            <label for="category_name">Name</label>
+            <input type="text" value="<%=category.name%>">
+          </div>
+          <div class="form-group">
+            <label for="category_description">Description</label>
+            <input type="text" name="category_description" id="category_description" value="category.description">
+          </div>
+          <div class="form-group">
+            <label for="is_consumable">Is Consumable</label>
+            <input type="checkbox" name="is_consumable" id="is_consumable" value="true" <%= category.is_consumable ? "checked" : "" %>>
+          </div>
+          <div class="form-group">
+            <label for="is_batch_tracked">Is Batch Tracked</label>
+            <input type="checkbox" name="is_batch_tracked" id="is_batch_tracked" value="true" <%= category.is_batch_tracked ? "checked" : "" %>>            
+          </div>
+          <div class="form-group">
+            <label for="is_expiry_tracked">Is Expiry Tracked</label>
+            <input type="checkbox" name="is_expiry_tracked" id="is_expiry_tracked" value="true" <%= category.is_expiry_tracked ? "checked" : "" %>>            
+          </div>
+          <div class="form-group">
+                <label for="">Is Active</label>
+                <input type="checkbox" name="is_active" value="true" <%= category.is_active ? "checked" : "" %>>
+          </div>
+            <button type="submit" class="primary-btn">Submit Edit</button>
 
+        </form>
+    </section>
 </body>
 </html>

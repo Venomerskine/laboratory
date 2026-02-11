@@ -146,6 +146,13 @@ async function editCategory(req, res){
     console.log(category)
     res.render("layouts/admin/categoryEdit", {category})
 }
+async function postCategoryEdit(req, res){
+    try {
+
+    } catch (err){
+        
+    }
+}
 
 module.exports = {
     getHomepage,
@@ -158,5 +165,6 @@ module.exports = {
     getAdminPage,
     editDepartment,
     postDepartmentEdit,
-    editCategory
+    editCategory,
+    postCategoryEdit
 };
