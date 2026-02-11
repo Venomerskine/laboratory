@@ -148,9 +148,26 @@ async function editCategory(req, res){
 }
 async function postCategoryEdit(req, res){
     try {
+        const {id} = req.params;
+        const result = await db.insertCategoryEdit({
+            ...req.body,
+            id
+        })
+
+        if(result.rowCount === 0) {
+            return res.status(404).send("Category not found")
+        }
+
+        res.redirect("/admin")
 
     } catch (err){
-        
+        console.error(err)
+
+        if(err.code === "23505") {
+            return res.status(400).send("Name or cod already exist")
+        }
+        res.status(500).send("Server error")
+
     }
 }
 
