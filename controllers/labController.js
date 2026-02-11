@@ -139,8 +139,11 @@ async function postDepartmentEdit(req, res){
 }
 
 async function editCategory(req, res){
-    const id = req.params
-    const category = await db.getCategoryById(id)
+    const id = req.params.id
+    const categoryResult = await db.getCategoryById(id)
+    const category = categoryResult[0]
+
+    console.log(category)
     res.render("layouts/admin/categoryEdit", {category})
 }
 
