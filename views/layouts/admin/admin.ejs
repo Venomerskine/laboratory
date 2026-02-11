@@ -19,5 +19,18 @@
             <% }) %>
         </div>
     </section>
+
+    <section class="card">
+        <h2 class="card-title">Edit Categories</h2>
+        <div class="card-grid">
+             <% categories.forEach(function(category) { %>
+                <a href="/categoriesEdit/<%= category.id %>">
+                    <div class="hover-card">
+                        <p><%= category.name %></p>
+                    </div>
+                </a>
+            <% }) %>
+        </div>
+    </section>
 </body>
 </html>
