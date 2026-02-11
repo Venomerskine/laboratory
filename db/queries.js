@@ -188,7 +188,33 @@ async function insertDepartmentEdit(data){
         
     ]
 
-    console.log("data id in query: ", values)
+
+    return await pool.query(query, values)
+}
+
+async function insertCategoryEdit(data){
+    const query = `
+        UPDATE item_category
+            SET 
+                name = $1,
+                description = $2,
+                is_consumable = $3,
+                is_batch_tracked = $4,
+                is_expiry_tracked = $5,
+                is_active = $6,
+                updated_at = CURRENT_TIMESTAMP
+            WHERE id = $7
+            RETURNING *;
+    `
+    const values = [
+        data.category_name,
+        data.category_description,
+        data.is_consumable,
+        data.is_batch_tracked,
+        data.is_expiry_tracked,
+        data.is_active,
+        data.id
+    ]
 
     return await pool.query(query, values)
 }
@@ -206,5 +232,6 @@ module.exports = {
     getCategoryById,
     getItemsByCategory,
     gettransactionHistory,
-    insertDepartmentEdit
+    insertDepartmentEdit,
+    insertCategoryEdit
 };

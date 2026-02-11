@@ -143,15 +143,19 @@ async function editCategory(req, res){
     const categoryResult = await db.getCategoryById(id)
     const category = categoryResult[0]
 
-    console.log(category)
     res.render("layouts/admin/categoryEdit", {category})
 }
 async function postCategoryEdit(req, res){
     try {
         const {id} = req.params;
+
         const result = await db.insertCategoryEdit({
             ...req.body,
-            id
+            id,
+            is_consumable: req.body.is_consumable === "on",
+            is_batch_tracked: req.body.is_batch_tracked === "on",
+            is_expiry_tracked: req.body.is_expiry_tracked === "on",
+            is_active: req.body.is_active === "on",  
         })
 
         if(result.rowCount === 0) {
@@ -164,7 +168,7 @@ async function postCategoryEdit(req, res){
         console.error(err)
 
         if(err.code === "23505") {
-            return res.status(400).send("Name or cod already exist")
+            return res.status(400).send("Name or code already exist")
         }
         res.status(500).send("Server error")
 

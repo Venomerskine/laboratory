@@ -14,7 +14,7 @@ router.get("/categoriesEdit/:id", labController.editCategory)
 
 router.post('/transactions', labController.postTransaction)
 router.post("/departments/:id/edit", labController.postDepartmentEdit)
-router.post("categories/:id/edit", labController.postCategoryEdit)
+router.post("/categories/:id/edit", labController.postCategoryEdit)
 
 router.get("/test", (req, res) => {
     res.send("test route")
