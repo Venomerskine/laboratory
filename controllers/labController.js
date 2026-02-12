@@ -145,35 +145,40 @@ async function editCategory(req, res){
 
     res.render("layouts/admin/categoryEdit", {category})
 }
-async function postCategoryEdit(req, res){
+
+async function postCategoryEdit(req, res) {
     try {
-        const {id} = req.params;
+        const { id } = req.params;
 
-        const result = await db.insertCategoryEdit({
-            ...req.body,
-            id,
-            is_consumable: req.body.is_consumable === "on",
-            is_batch_tracked: req.body.is_batch_tracked === "on",
-            is_expiry_tracked: req.body.is_expiry_tracked === "on",
-            is_active: req.body.is_active === "on",  
-        })
+        const data = {
+            category_name: req.body.category_name?.trim(),
+            category_description: req.body.category_description?.trim(),
+            is_consumable: !!req.body.is_consumable,
+            is_batch_tracked: !!req.body.is_batch_tracked,
+            is_expiry_tracked: !!req.body.is_expiry_tracked,
+            is_active: !!req.body.is_active,
+            id
+        };
 
-        if(result.rowCount === 0) {
-            return res.status(404).send("Category not found")
+        const result = await db.updateCategory(data);
+
+        if (result.rowCount === 0) {
+            return res.status(404).send("Category not found");
         }
 
-        res.redirect("/admin")
+        res.redirect("/admin");
 
-    } catch (err){
-        console.error(err)
+    } catch (err) {
+        console.error(err);
 
-        if(err.code === "23505") {
-            return res.status(400).send("Name or code already exist")
+        if (err.code === "23505") {
+            return res.status(400).send("Name or code already exist");
         }
-        res.status(500).send("Server error")
 
+        res.status(500).send("Server error");
     }
 }
+
 
 module.exports = {
     getHomepage,

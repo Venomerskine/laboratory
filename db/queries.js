@@ -12,8 +12,9 @@ async function getDepartmentById(id) {
 }
 
 async function getAllItemCategories() {
-    const result = await pool.query("select * from item_category ic where is_active = true");
+    const result = await pool.query("select * from item_category ic ");
     return result.rows;
+    
 }
 
 async function getAllItems() {
@@ -192,7 +193,7 @@ async function insertDepartmentEdit(data){
     return await pool.query(query, values)
 }
 
-async function insertCategoryEdit(data){
+async function updateCategory(data){
     const query = `
         UPDATE item_category
             SET 
@@ -233,5 +234,5 @@ module.exports = {
     getItemsByCategory,
     gettransactionHistory,
     insertDepartmentEdit,
-    insertCategoryEdit
+    updateCategory
 };
