@@ -235,6 +235,31 @@ async function updateCategory(data){
     return await pool.query(query, values)
 }
 
+async function updateItem(data){
+    const query = `
+        UPDATE item_table
+            SET 
+                name = $1,
+                unit_of_measure = $2,
+                storage_condition = $3,
+                minimum_stock = $4,
+                is_active = $5,
+                updated_at = CURRENT_TIMESTAMP
+            WHERE id = $6
+            RETURNING *;
+    `
+    const values = [
+        data.item_name,
+        data.unit_of_measure,
+        data.storage_condition,
+        data.minimum_stock,
+        data.is_active,
+        data.id
+    ]
+
+    return await pool.query(query, values)
+}
+
 module.exports = {
     getAllDepartments,
     getAllItemCategories,
