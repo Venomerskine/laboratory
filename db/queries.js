@@ -25,6 +25,7 @@ async function getAllItems() {
 async function getItemDetails(id) {
     const result = await pool.query(`
             select
+                it.id,
                 name,
                 it.unit_of_measure,
                 it.storage_condition,
