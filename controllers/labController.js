@@ -179,6 +179,14 @@ async function postCategoryEdit(req, res) {
     }
 }
 
+async function editItem(req, res) {
+    const id = req.params.id
+}
+
+async function postItemEdit(req, res){
+
+}
+
 
 module.exports = {
     getHomepage,
@@ -192,5 +200,7 @@ module.exports = {
     editDepartment,
     postDepartmentEdit,
     editCategory,
-    postCategoryEdit
+    postCategoryEdit,
+    editItem,
+    postItemEdit
 };
