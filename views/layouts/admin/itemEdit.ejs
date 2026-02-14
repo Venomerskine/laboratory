@@ -8,14 +8,34 @@
 </head>
 <body>
     <header class="page-header">
-        <h1>Edit</h1>
-        <p class="subtitle">Edit and submit the details of <%=item.name%></p>
+        <h1><%=item.name%></h1>
+        <p class="subtitle">Edit and submit the details of the item <%=item.name%></p>
     </header>
     <a href="/admin" class="back-link"> Back to Admin</a>
-<section class="form-group">
+<section class="form-card">
     <form action="/items/<%=item.id%>/edit" method="POST" class="lab-form">
-        <button type="submit" class="primary-btn">Submit Edit</button>
+        <div class="form-group">
+            <label for="item_name">Name</label>
+            <input type="text" name="item_name" id="item_name" value="<%=item.name%>">
+        </div>
 
+        <div class="form-group">
+            <label for="item_unit_of_measure">Unit of Measure</label>
+            <input type="text" name="item_unit_of_measure" id="item_unit_of_measure" value="<%=item.unit_of_measure%>">
+        </div>
+        <div class="form-group">
+            <label for="item_storage_condition">Storage Condition</label>
+            <input type="text" name="item_storage_condition" id="item_storage_condition" value="<%=item.storage_condition%>">
+        </div>
+        <div class="form-group">
+            <label for="item_minimum_stock">Minimum Stock</label>
+            <input type="number" name="item_minimum_stock" id="item_minimum_stock" value="<%=item.minimum_stock%>">
+        </div>
+        <div class="form-group">
+            <label for="item_is_active">is_active</label>
+            <input type="checkbox" name="item_is_active" id="item_is_active" <%= item.is_active ? 'checked' : '' %>>
+        </div>
+        <button type="submit" class="primary-btn">Submit Edit</button>
     </form>
 </section>
 </body>
