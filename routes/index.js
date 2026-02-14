@@ -11,10 +11,12 @@ router.get("/category/:id", labController.getCategoryDetails)
 router.get("/admin", labController.getAdminPage)
 router.get("/departmentsEdit/:id", labController.editDepartment)
 router.get("/categoriesEdit/:id", labController.editCategory)
+router.get("/itemEdit/:id", labController.editItem)
 
 router.post('/transactions', labController.postTransaction)
 router.post("/departments/:id/edit", labController.postDepartmentEdit)
 router.post("/categories/:id/edit", labController.postCategoryEdit)
+router.post("items/:id/edit", labController.postItemEdit)
 
 router.get("/test", (req, res) => {
     res.send("test route")
