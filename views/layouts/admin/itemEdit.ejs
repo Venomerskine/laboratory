@@ -9,9 +9,9 @@
 <body>
     <header class="page-header">
         <h1>Edit</h1>
-        <p class="subtitle">Edit and submit the details of </p>
+        <p class="subtitle">Edit and submit the details of <%=item.name%></p>
     </header>
-    <a href="/" class="back-link"> Back to Home</a>
+    <a href="/admin" class="back-link"> Back to Admin</a>
 <section class="form-group">
     <form action="/items/<%=item.id%>/edit" method="POST" class="lab-form">
         <button type="submit" class="primary-btn">Submit Edit</button>

@@ -96,12 +96,13 @@ async function getCategoryDetails(req, res){
 }
 
 async function getAdminPage(req, res){
-    const[departments, categories] = await Promise.all([
+    const[departments, categories, items] = await Promise.all([
         db.getAllDepartments(),
-        db.getAllItemCategories()
+        db.getAllItemCategories(),
+        db.getAllItems()
 
     ])
-    res.render("layouts/admin/admin", {departments, categories})
+    res.render("layouts/admin/admin", {departments, categories, items})
 }
 
 async function editDepartment(req, res){
@@ -181,6 +182,11 @@ async function postCategoryEdit(req, res) {
 
 async function editItem(req, res) {
     const id = req.params.id
+    const item = await db.getItemDetails(id)
+    
+    console.log("Item details :",item)
+
+    res.render("layouts/admin/itemEdit", {item})
 }
 
 async function postItemEdit(req, res){

@@ -22,6 +22,21 @@ async function getAllItems() {
     return result.rows;
 }
 
+async function getItemDetails(id) {
+    const result = await pool.query(`
+            select
+                name,
+                it.unit_of_measure,
+                it.storage_condition,
+                it.minimum_stock,
+                it.is_active,
+                it.created_at,
+                it.updated_at 
+            from item_table it where id = $1
+        `, [id])
+    return result.rows[0]
+}
+
 async function getStockItems() {
     const result = await pool.query(
 
@@ -234,5 +249,6 @@ module.exports = {
     getItemsByCategory,
     gettransactionHistory,
     insertDepartmentEdit,
-    updateCategory
+    updateCategory,
+    getItemDetails
 };

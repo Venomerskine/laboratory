@@ -11,7 +11,7 @@ router.get("/category/:id", labController.getCategoryDetails)
 router.get("/admin", labController.getAdminPage)
 router.get("/departmentsEdit/:id", labController.editDepartment)
 router.get("/categoriesEdit/:id", labController.editCategory)
-router.get("/itemEdit/:id", labController.editItem)
+router.get("/itemsEdit/:id", labController.editItem)
 
 router.post('/transactions', labController.postTransaction)
 router.post("/departments/:id/edit", labController.postDepartmentEdit)
