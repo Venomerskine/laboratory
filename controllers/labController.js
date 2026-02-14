@@ -190,7 +190,25 @@ async function editItem(req, res) {
 }
 
 async function postItemEdit(req, res){
+    try {
+        const { id } = req.params;
 
+        const data = {
+            item_name: req.body.item_name?.trim(),
+            storage_conditions: req.body.storage_conditions?.trim(),
+            minimum_stock: parseInt(req.body.minimum_stock, 10) || 0,
+            is_active: !!req.body.is_active,
+            id
+        };
+        const result = await db.updateItem(data);
+        if (result.rowCount === 0) {
+            return res.status(404).send("Item not found");
+        }
+        res.redirect("/admin");
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Failed to update item");
+    }
 }
 
 
