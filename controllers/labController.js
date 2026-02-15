@@ -195,11 +195,16 @@ async function postItemEdit(req, res){
 
         const data = {
             item_name: req.body.item_name?.trim(),
-            storage_conditions: req.body.storage_conditions?.trim(),
+            unit_of_measure: req.body.item_unit_of_measure?.trim(),
+            storage_condition: req.body.item_storage_condition?.trim(),
             minimum_stock: parseInt(req.body.minimum_stock, 10) || 0,
-            is_active: !!req.body.is_active,
+            is_active: !!req.body.item_is_active,
             id
         };
+
+        console.log("req body :", req.body)
+
+        console.log("dat to upload: ", data)
         const result = await db.updateItem(data);
         if (result.rowCount === 0) {
             return res.status(404).send("Item not found");

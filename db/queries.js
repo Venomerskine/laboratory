@@ -18,7 +18,7 @@ async function getAllItemCategories() {
 }
 
 async function getAllItems() {
-    const result = await pool.query("select * from item_table where is_active =  true ");
+    const result = await pool.query("select * from item_table  order by name asc ");
     return result.rows;
 }
 
@@ -34,6 +34,7 @@ async function getItemDetails(id) {
                 it.created_at,
                 it.updated_at 
             from item_table it where id = $1
+            order by name asc
         `, [id])
     return result.rows[0]
 }
@@ -276,5 +277,6 @@ module.exports = {
     gettransactionHistory,
     insertDepartmentEdit,
     updateCategory,
-    getItemDetails
+    getItemDetails,
+    updateItem
 };
