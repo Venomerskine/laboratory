@@ -300,3 +300,14 @@ a {
     margin-top: 6px;
     font-size: 0.85rem;
 }
+
+.back-btn{
+    padding: 7px;
+    background-color: #2e7d32;
+    color: #ffffff;
+    font-size: 17px;
+    border-radius: 5px;
+    margin: 20px;
+    border: 0px;
+    cursor: pointer;
+}

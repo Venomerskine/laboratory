@@ -11,7 +11,7 @@
         <h1><%=item.name%></h1>
         <p class="subtitle">Edit and submit the details of the item <%=item.name%></p>
     </header>
-    <a href="/admin" class="back-link"> Back to Admin</a>
+    <a href="/admin"><button class="back-btn">Admin</button></a>
 <section class="form-card">
     <form action="/items/<%=item.id%>/edit" method="POST" class="lab-form">
         <div class="form-group">
