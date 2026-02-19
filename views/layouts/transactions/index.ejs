@@ -26,9 +26,9 @@
                 <label>Department</label>
                 <select name="department_name" required>
                     <option value="">-- Select department --</option>
-                    <% itemBatchTransaction.forEach(dept => { %>
+                    <% departments.forEach(dept => { %>
                         <option value="<%= dept.department_name %>">
-                            <%= dept.department_name %>
+                            <%= dept.name %>
                         </option>
                     <% }) %>
                 </select>
@@ -39,7 +39,7 @@
                 <label>Batch</label>
                 <select name="batch_number" required>
                     <option value="">-- Select batch --</option>
-                    <% itemBatchTransaction.forEach(row => { %>
+                    <% batches.forEach(row => { %>
                         <option value="<%= row.batch_number %>">
                             <%= row.batch_number %>
                         </option>

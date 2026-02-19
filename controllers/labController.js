@@ -48,10 +48,17 @@ async function getStock(req, res) {
 }
 
 async function getTransaction(req, res) {
-    const itemBatchTransaction = await db.getItemBatchAndTransaction()
+    // const itemBatchTransaction = await db.getItemBatchAndTransaction()
+    const [departments, batches, items] = await Promise.all([
+        db.getAllDepartments(),
+        db.getAllBatches(),
+        db.getAllItems()
+    ])
     const transactions =  await db.gettransactionHistory()
-    console.log(itemBatchTransaction)
-    res.render("layouts/transactions/index", {itemBatchTransaction, transactions})
+    console.log("Departments: ", departments)
+    console.log("Batches: ", batches)
+    console.log("Items: ", items)
+    res.render("layouts/transactions/index", {departments, batches, items, transactions})
 
 }
 
