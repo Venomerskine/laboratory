@@ -123,6 +123,10 @@ async function insertStockTransaction(data) {
   return pool.query(query, values);
 }
 
+async function getAllBatches(){
+    const result = await pool.query(`select * from item_batches;`)
+    return result.rows
+}
 
 async function getBatchInDetail(id) {
     const result = await pool.query(
@@ -278,5 +282,6 @@ module.exports = {
     insertDepartmentEdit,
     updateCategory,
     getItemDetails,
-    updateItem
+    updateItem,
+    getAllBatches
 };

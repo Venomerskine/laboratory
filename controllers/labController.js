@@ -6,6 +6,9 @@ async function getHomepage(req, res) {
         db.getAllItemCategories(),
         db.getAllItems()
     ]);
+    console.log("Homepage departments number", departments.length);
+    console.log("Homepage item categories number", itemCategories.length);
+    console.log("HomePage items number", items.length)
     res.render("./layouts/homePage", { departments, itemCategories, items });
 }
 
@@ -19,6 +22,9 @@ async function getDepartment(req, res) {
     if(!department) {
         return res.status(404).send("Department not found")
     }
+
+    console.log(department)
+
     res.render("layouts/departments/department", {department})
     
     
@@ -44,7 +50,7 @@ async function getStock(req, res) {
 async function getTransaction(req, res) {
     const itemBatchTransaction = await db.getItemBatchAndTransaction()
     const transactions =  await db.gettransactionHistory()
-    // console.log(itemBatchTransaction)
+    console.log(itemBatchTransaction)
     res.render("layouts/transactions/index", {itemBatchTransaction, transactions})
 
 }
